@@ -18,14 +18,14 @@ def modifyText():
 
             res1 = line.strip() + symbol
             pattern1 =r'^(0\d|1[0-2])(-[0-2]\d|3[0-1])'
-            repl1=r'\n;\1\2!'
+            repl1=r'\n\1\2!'
             # Search for the pattern
             res2 = re.sub(pattern1,repl1,res1,re.IGNORECASE)
             temp=re.match(pattern1, res1)
             if temp:
                 str1=temp.group(1)+temp.group(2)
             pattern2 =  r'^([0-1]\d|2[0-4])(:[0-5]\d)'
-            repl2 = r'\n;' + str1 + r'!\1\2'
+            repl2 = r'\n' + str1 + r'!\1\2'
             # Search for the pattern
             res3 = re.sub(pattern2,repl2,res2,re.IGNORECASE)
             print(f"{res3}")
