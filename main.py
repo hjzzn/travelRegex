@@ -2,11 +2,11 @@ import re
 import os
 from datetime import datetime
 
-strfilename="湘西秋韵.txt"
+strfilename = "峡江红叶.txt"
 
 def modifyText(input_fn):
     symbol = "!"
-    # 1. 获取当前日期 (例如: 2026-02-27)
+    # 1. 获取当前日期 (YYYY-MM-DD)
     today_str = datetime.now().strftime("%Y-%m-%d")
     
     # 2. 生成新文件名: 原文件名 + 规范化 + 日期
@@ -18,30 +18,43 @@ def modifyText(input_fn):
     pattern2 = r'^([0-1]\d|2[0-4])(:[0-5]\d)'
 
     try:
-        # 使用版本 B 的 with open 结构，更安全、更简洁
         with open(input_fn, 'r', encoding='utf-8') as file, \
              open(output_fn, 'w', encoding='utf-8') as fo:
             
             last_date = ""
+            is_first_record = True
 
             for line in file:
                 clean_line = line.strip()
                 if not clean_line:
                     continue
 
-                # 匹配日期
+                # 1. 匹配到日期：仅更新状态，不换行也不写入
                 date_match = re.match(pattern1, clean_line)
                 if date_match:
                     last_date = date_match.group(0)
-                    fo.write(f"{last_date}{symbol}\n")
+                    continue
                 
-                # 匹配时间 (补全日期)
-                elif re.match(pattern2, clean_line):
-                    fo.write(f"{last_date}{symbol}{clean_line}{symbol}\n")
+                # 2. 匹配到时间：触发换行，开启属于该日期时间的新记录
+                time_match = re.match(pattern2, clean_line)
+                if time_match:
+                    current_time = time_match.group(0)
+                    # 如果不是文件开头的第一条记录，先换行
+                    if not is_first_record:
+                        fo.write("\n")
+                    # 写入行首：日期!时间!
+                    fo.write(f"{last_date}{symbol}{current_time}{symbol}")
+                    is_first_record = False
                 
-                # 其他杂项
+                # 3. 杂项内容：直接拼接在当前行后面，并加上分隔符
                 else:
-                    fo.write(f"{last_date}{symbol}{clean_line}\n")
+                    # 只有在已经确定了时间点（即一行已经开始）后才写入杂项
+                    if not is_first_record:
+                        fo.write(f"{clean_line}{symbol}")
+            
+            # 文件末尾补一个换行
+            if not is_first_record:
+                fo.write("\n")
                     
         print(f"成功！已生成: {output_fn}")
         
