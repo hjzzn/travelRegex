@@ -1,5 +1,6 @@
 import re
 
+fn="峡江红叶.txt"
 
 def greet(name):
     print(f"Hello, {name}!")
@@ -8,7 +9,7 @@ def greet(name):
 def modifyText():
     symbol = "!"
     fo = open("new.txt", "w", encoding='utf-8')
-    with open('湘西秋韵.txt', 'r', encoding='utf-8') as file:
+    with open(fn , 'r', encoding='utf-8') as file:
         count = 0
         str1 = ""
         while True:
