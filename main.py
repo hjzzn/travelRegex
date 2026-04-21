@@ -1,7 +1,10 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
 """
 旅行日志格式化工具
 将包含日期、时间和内容的文本文件规范化为统一格式
 """
+
 import re
 import os
 import sys
