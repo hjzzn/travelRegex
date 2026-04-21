@@ -9,13 +9,10 @@ from datetime import datetime
 from pathlib import Path
 
 # 配置常量
-DEFAULT_INPUT_FILE = "峡江红叶.txt"
+DEFAULT_INPUT_FILE = "浏阳烟花.txt"
 SEPARATOR = "!"
 DATE_PATTERN = re.compile(r'^(0\d|1[0-2])(-[0-2]\d|3[0-1])')
 TIME_PATTERN = re.compile(r'^([0-1]\d|2[0-4])(:[0-5]\d)')
-
-inputFileName='浏阳烟花.txt'
-outputFileName='out_'+inputFileName
 
 def generate_output_filename(input_path):
     """生成输出文件名：原文件名 + 规范化 + 日期"""
@@ -24,16 +21,6 @@ def generate_output_filename(input_path):
     return f"{base_name}规范化{today_str}.txt"
 
 
-<<<<<<< HEAD
-def modify_text():
-    symbol = "!"
-    pattern1 = r'^(0\d|1[0-2])(-[0-2]\d|3[0-1])'  #MM-dd日期模式
-    pattern2 = r'^([0-1]\d|2[0-4])(:[0-5]\d)'    #hh:mm时间模式
-
-    with open(inputFileName, 'r', encoding='utf-8') as file, \
-         open(outputFileName, "w", encoding='utf-8') as fo:
-        str1 = ""
-=======
 def process_travel_log(input_fn, output_fn=None):
     """
     处理旅行日志文件，将其格式化为规范格式
@@ -41,7 +28,6 @@ def process_travel_log(input_fn, output_fn=None):
     参数:
         input_fn: 输入文件路径
         output_fn: 输出文件路径（可选，默认自动生成）
->>>>>>> a47101a4c4b827290f8835579c530201a620d116
 
     返回:
         bool: 处理是否成功
@@ -111,11 +97,6 @@ def process_travel_log(input_fn, output_fn=None):
 
 
 def main():
-<<<<<<< HEAD
-    # greet("World")
-    # print("This code runs when the script is executed directly.")
-    modify_text()
-=======
     """主函数：支持命令行参数或使用默认文件"""
     if len(sys.argv) > 1:
         input_file = sys.argv[1]
@@ -126,7 +107,6 @@ def main():
 
     success = process_travel_log(input_file, output_file)
     sys.exit(0 if success else 1)
->>>>>>> a47101a4c4b827290f8835579c530201a620d116
 
 
 if __name__ == "__main__":
