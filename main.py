@@ -1,17 +1,19 @@
 import re
 
+inputFileName='浏阳烟花.txt'
+outputFileName='out_'+inputFileName
 
 def greet(name):
     print(f"Hello, {name}!")
 
 
-def modifyText():
+def modify_text():
     symbol = "!"
-    pattern1 = r'^(0\d|1[0-2])(-[0-2]\d|3[0-1])'
-    pattern2 = r'^([0-1]\d|2[0-4])(:[0-5]\d)'
+    pattern1 = r'^(0\d|1[0-2])(-[0-2]\d|3[0-1])'  #MM-dd日期模式
+    pattern2 = r'^([0-1]\d|2[0-4])(:[0-5]\d)'    #hh:mm时间模式
 
-    with open('湘西秋韵.txt', 'r', encoding='utf-8') as file, \
-         open("new.txt", "w", encoding='utf-8') as fo:
+    with open(inputFileName, 'r', encoding='utf-8') as file, \
+         open(outputFileName, "w", encoding='utf-8') as fo:
         str1 = ""
 
         for line in file:
@@ -37,7 +39,7 @@ def modifyText():
 def main():
     # greet("World")
     # print("This code runs when the script is executed directly.")
-    modifyText()
+    modify_text()
 
 
 if __name__ == "__main__":
