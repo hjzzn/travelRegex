@@ -1,7 +1,10 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
 """
 旅行日志格式化工具
 将包含日期、时间和内容的文本文件规范化为统一格式
 """
+
 import re
 import os
 import sys
@@ -10,10 +13,10 @@ from pathlib import Path
 
 # 配置常量
 DEFAULT_INPUT_FILE = "沙坡头.txt"
+
 SEPARATOR = "!"
 DATE_PATTERN = re.compile(r'^(0\d|1[0-2])(-[0-2]\d|3[0-1])')
 TIME_PATTERN = re.compile(r'^([0-1]\d|2[0-4])(:[0-5]\d)')
-
 
 def generate_output_filename(input_path):
     """生成输出文件名：原文件名 + 规范化 + 日期"""
