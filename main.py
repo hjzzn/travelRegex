@@ -12,7 +12,7 @@ from datetime import datetime
 from pathlib import Path
 
 # 配置常量
-DEFAULT_INPUT_FILE = "波浪谷和壶口瀑布.txt"
+DEFAULT_INPUT_FILE = "辽东赏秋20260920.txt"
 
 SEPARATOR = "!"
 DATE_PATTERN = re.compile(r'^(0\d|1[0-2])(-[0-2]\d|3[0-1])')
